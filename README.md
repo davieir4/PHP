@@ -1,4 +1,4 @@
-#Esse repositório tem servido como prática à programação web e orientação a objetos.#
+# Esse repositório tem servido como prática à programação web e orientação a objetos.
 
 Caso queira executar o código a seguir se atende a algumas recomendações:
 
