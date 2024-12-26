@@ -1,6 +1,6 @@
 # Esse repositório tem servido como prática à programação web e orientação a objetos.
 
-Caso queira executar o código a seguir se atende a algumas recomendações:
+Caso queira executar mano_deyvin_sounds.php se atende a algumas recomendações:
 
 1. Instale o xampp: https://www.apachefriends.org/pt_br/index.html
 2. Crie uma pasta dentro de 'htdocs'
