@@ -7,10 +7,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        img {
+            max-width: 250px; /* Define a largura máxima */
+            height: auto; /* Mantém a proporção da imagem */
+        }
+    </style>
 </head>
+
 <body>
     <form method=POST>
-        <image></image>
+        <img src = "https://conteudo.imguol.com.br/blogs/284/files/2019/04/04.png"/>
         <h1>ChorumeList</h1>    
         <input name=description placeholder="insira sua task aqui..."> <button name=action value=insert>add task</button>
         <button name=action value=list>ver tasks</button><br>
@@ -34,12 +41,19 @@
     <?php
 
         require 'task.php';
+    
+
         $task = new Task;
        
-  
-        switch($_POST['action']):
+  #implementar try catch
+        switch($_POST['action']??null):
             case 'insert':
                 $task->insert($_POST['description']);
+                echo "<script>
+                const audio = new Audio('sounds/xii.mp3');
+                audio.play();
+                </script>";
+                 exit;
                 exit;
             case 'list':
                 foreach ($task->list() as $task){
@@ -54,16 +68,28 @@
                 exit;
             case 'delete':
                 $task->delete($_POST['id']);
+                echo "<script>
+                const audio = new Audio('sounds/ele_gosta.mp3');
+                audio.play();
+                </script>";
                 exit;
             case 'deleteAll':
                 $task->deleteAll();
+                echo "<script>
+                const audio = new Audio('sounds/danca_gatinho.mp3');
+                audio.play();
+                </script>";
                 exit;
             case 'update':
                 $task->update($_POST['new_description'], $_POST['id_up']);
                 exit;
             case 'is_done':
                 $task->upStatus(1, $_POST['id_att']);
-                 exit;
+                echo "<script>
+                const audio = new Audio('sounds/ai.mp3');
+                audio.play();
+                </script>";
+                
             endswitch;
         
 
