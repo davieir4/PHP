@@ -5,7 +5,7 @@
     $pdo = null;
 
     try {
-        $pdo = new PDO('mysql:host=localhost;dbname=list', 'root', '1507FriedLiver.c');
+        $pdo = new PDO('mysql:host=localhost;dbname=list', 'root', '');
 
     }catch(Exception $e) {
         echo $e->getMessage();
