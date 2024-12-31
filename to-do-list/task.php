@@ -91,7 +91,7 @@ class Task
     }
     public function deleteAll(): void
     {
-        $sql = 'delete from tasks';
+        $sql = 'TRUNCATE TABLE tasks';
         $prepare = $this->connection->prepare($sql);
         $prepare->execute();  
                
