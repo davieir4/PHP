@@ -191,20 +191,7 @@
             }
             
            
-                /* old
-            case 'list':
-                foreach ($task->list() as $task){
-                    if($task['is_done']){
-                        echo " ✅ {$task['id']} | {$task['descricao']}<br> ";
-                    }
-                    else{
-                        echo " ❌ {$task['id']} | {$task['descricao']}<br> ";
-                    }
-                   
-                }
-                exit;
-               */
-
+            
              
 
 
