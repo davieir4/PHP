@@ -21,7 +21,7 @@ class Task
         
     }
     
-    public function insert(string $description): string #Create
+    public function insert(string $description): int
     {
         $sql = 'insert into tasks(descricao) values(?)';
  
@@ -30,7 +30,7 @@ class Task
         $prepare->bindParam(1, $description); # metodo que possui prevencao contra sql injection
         $prepare->execute();
     
-        return "<br> linhas afetadas: {$prepare->rowCount()} <br>"; #retorna as linhas afetadas
+        return $prepare->rowCount();
         
     }
     public function list(): array #Read
@@ -50,7 +50,7 @@ class Task
 
     
     }
-    public function update(string $newDescription, int $id): string #Uptade
+    public function update(string $newDescription, int $id): int
     {
         $sql = 'update tasks set descricao = ?  where id = ?';
         
@@ -61,10 +61,10 @@ class Task
         
         $prepare -> execute();
         
-        return "<br> linhas afetadas: {$prepare->rowCount()}";
+        return $prepare->rowCount();
         
     }
-    public function upStatus(bool $is_done, int $id): void
+    public function upStatus(bool $is_done, int $id): int
     {
         $sql = 'update tasks set is_done = ?  where id = ?';
         
@@ -74,9 +74,11 @@ class Task
         $prepare->bindParam(2, $id);
         
         $prepare -> execute();
+
+        return $prepare->rowCount();
           
     }
-    public function delete(int $id): string #Delete
+    public function delete(int $id): int #Delete
     {
         $sql = 'delete from tasks where id = ?';
 
@@ -85,13 +87,13 @@ class Task
         $prepare->bindParam(1, $id);
         $prepare->execute();
         
-        return"<br>linhas afetadas: {$prepare->rowCount()}";
+        return $prepare->rowCount();
         
                
     }
     public function deleteAll(): void
     {
-        $sql = 'TRUNCATE TABLE tasks';
+        $sql = "TRUNCATE TABLE tasks"; #Truncar a tabela (remove todos os dados e reseta o contador):
         $prepare = $this->connection->prepare($sql);
         $prepare->execute();  
                
