@@ -8,18 +8,27 @@ class Task
      * @var PDO
      */
 
-    private $connection;
+    #singleton
 
-    public function __construct()
-    {
-        try{
-            $this->connection = new  PDO('mysql:host=localhost;dbname=list', 'root', '');
-        }catch(Exception $e){
-            echo $e->getMessage();
-            die();
+        private static $instance = null;
+        private $connection;
+    
+        private function __construct() {
+            $this->connection = new PDO('mysql:host=localhost;dbname=list', 'root', '1507FriedLiver.c');
         }
-        
-    }
+    
+        public static function getInstance() {
+            if (self::$instance === null) {
+                self::$instance = new self();
+            }
+            return self::$instance;
+        }
+    
+        public function getConnection() {
+            return $this->connection;
+        }
+    
+    
     
     public function insert(string $description): int
     {
@@ -38,10 +47,7 @@ class Task
         $sql = 'select * from tasks';
 
         $tasks = [];
-
-
-        echo "<h2>TASKS:<h2>";
-
+        
         foreach ($this->connection->query($sql) as $value) {
             
             array_push($tasks, $value);
@@ -98,9 +104,11 @@ class Task
         $prepare->execute();  
                
     }
+    public function __destruct()
+    {
+        $this->connection = null;
+    }
 
 };
-
-
 
 ?>
